@@ -25,6 +25,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Color _textColor = Colors.black; // El color inicial del texto.
   double _textSize = 20.0; // El tamaño inicial del texto.
+  bool _isBold = false; // La variable para rastrear si el texto está en negrita o no.
+
+  void _changeTextBold(){
+    setState(() {
+      // Cambia la negrita
+      if(_isBold==true){_isBold=false;}
+      else{_isBold=true;}
+    });
+  }
 
   void _changeTextColor() {
     setState(() {
@@ -63,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                 color: _textColor,
                 fontSize: _textSize, // Aplicar el tamaño del texto aquí.
+                fontWeight: _isBold ? FontWeight.bold : FontWeight.normal, // Establece el peso de la fuente.
               ),
             ),
             SizedBox(height: 20),
@@ -74,6 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: _changeTextSize,
               child: Text('Cambiar Tamaño'),
+            ),
+            SizedBox(height: 10), // Espacio entre los dos botones.
+            ElevatedButton(
+              onPressed: _changeTextBold,
+              child: Text('Cambiar Negrita'),
             ),
           ],
         ),
