@@ -24,12 +24,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Color _textColor = Colors.black; // El color inicial del texto.
+  double _textSize = 20.0; // El tamaño inicial del texto.
 
   void _changeTextColor() {
     setState(() {
-      // Aquí es donde cambias el color del texto.
-      // Estoy alternando entre negro y rojo, pero puedes elegir cualquier lógica.
-      _textColor = _textColor == Colors.black ? Colors.red : Colors.black;
+      // Cambia el color del texto.
+      if(_textColor== Colors.black ){
+        _textColor =Colors.red;
+      }else{
+        _textColor =Colors.black;
+      }
+    });
+  }
+
+  void _changeTextSize() {
+    setState(() {
+      // Cambia el tamaño del texto.
+      if(_textSize==20.0){
+        _textSize=30.0;
+      }else{
+        _textSize=20.0;
+      }
     });
   }
 
@@ -37,20 +52,28 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cambia Color de Texto'),
+        title: Text('Cambia Color y Tamaño de Texto'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '¡Presiona el botón para cambiar mi color!',
-              style: TextStyle(color: _textColor), // Aquí aplicas el color.
+              '¡Interactúa con los botones!',
+              style: TextStyle(
+                color: _textColor,
+                fontSize: _textSize, // Aplicar el tamaño del texto aquí.
+              ),
             ),
-            SizedBox(height: 20), // Espacio entre el texto y el botón.
+            SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _changeTextColor, // Método llamado al presionar.
+              onPressed: _changeTextColor,
               child: Text('Cambiar Color'),
+            ),
+            SizedBox(height: 10), // Espacio entre los dos botones.
+            ElevatedButton(
+              onPressed: _changeTextSize,
+              child: Text('Cambiar Tamaño'),
             ),
           ],
         ),
